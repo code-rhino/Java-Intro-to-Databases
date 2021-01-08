@@ -23,7 +23,7 @@ Once that is done create the docker container:
 * If you have MYSQL installed on your machine change `3306:3306` with `3308:3306`
 
 ```
-docker run --name cd-address-book -p 3306:3306 -e MYSQL_ROOT_PASSWORD=<password> -d mysql:5.7.32
+docker run --name cd-address-book -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:5.7.32
 ```
 
 SSH or remote login to the container:
@@ -73,7 +73,7 @@ use addressbook;
 Create table for Employees:
 
 ```
-create table  IF NOT EXISTS PERSON (id VARCHAR(36), first_name VARCHAR(45), last_name VARCHAR(100), email VARCHAR(100), age INTEGER);
+create table  IF NOT EXISTS PERSON (id VARCHAR(36) NOT NULL primary key, first_name VARCHAR(45), last_name VARCHAR(100), email VARCHAR(100), age INTEGER);
 ```
 
 Exit Mysql:

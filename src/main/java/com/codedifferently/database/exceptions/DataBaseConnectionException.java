@@ -1,4 +1,4 @@
-package com.codedifferently.database;
+package com.codedifferently.database.exceptions;
 
 public class DataBaseConnectionException extends Exception{
 }

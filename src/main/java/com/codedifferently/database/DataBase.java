@@ -1,26 +1,13 @@
 package com.codedifferently.database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.util.logging.Logger;
+import com.codedifferently.database.exceptions.DataBaseSaveException;
+import com.codedifferently.models.person.Person;
 
-public class DataBase {
-    private static final Logger logger = Logger.getGlobal();
-    private Connection connection;
+import java.util.*;
 
-    private void getConnection() throws DataBaseConnectionException {
-        try{
-            Connection connection = DriverManager
-                    .getConnection("jdbc:mysql://localhost:3306/addressbook?createDatabaseIfNotExist=true&useSSL=false", "developer01", "pass");
-            connection.setAutoCommit(false);
-            logger.info("Successful Connection");
-        }catch (Exception e) {
-            logger.warning(e.getMessage());
-            throw new DataBaseConnectionException();
-        }
-    }
 
-    public DataBase() throws DataBaseConnectionException {
-        getConnection();
-    }
+public interface DataBase {
+    void savePerson(Person person) throws DataBaseSaveException;
+    void saveAllPeople(List<Person> people) throws DataBaseSaveException;
+    List<Person> getAllPeople();
 }
